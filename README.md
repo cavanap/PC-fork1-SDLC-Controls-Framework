@@ -2,7 +2,7 @@
 
 # SDLC Common Controls Catalog
 
-> **[View the live site](https://finos-labs.github.io/SDLC-Controls-Framework/)**
+> **[View the live site](https://sdlc-common-controls.finos.org/)**
 
 The SDLC Common Controls Catalog Working Group aims to create a shared, open reference library for software governance controls across the financial services industry. By establishing common definitions, implementations, and patterns, we reduce duplication, prevent drift, and enable institutions to focus on innovation rather than reinventing control frameworks.
 
