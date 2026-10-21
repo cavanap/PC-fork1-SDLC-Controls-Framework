@@ -5,11 +5,11 @@
             <div class="card-body" id="filterPanel">
                 <!-- Collapsed header with toggle button -->
                 <div class="d-flex justify-content-between align-items-center mb-3" id="filterHeader">
-                    <h5 class="mb-0 fw-bold">
-                        <i class="bi bi-funnel me-2"></i>Search & Filter
-                    </h5>
-                    <button type="button" class="btn btn-link p-0 filter-toggle-btn collapsed" id="filterToggle">
-                        <i class="bi bi-chevron-down fs-5"></i>
+                    <h2 class="h5 mb-0 fw-bold">
+                        <i class="bi bi-funnel me-2" aria-hidden="true"></i>Search &amp; Filter
+                    </h2>
+                    <button type="button" class="btn btn-link p-0 filter-toggle-btn collapsed" id="filterToggle" aria-expanded="false" aria-controls="filterContent" aria-label="Show search and filter options">
+                        <i class="bi bi-chevron-down fs-5" aria-hidden="true"></i>
                     </button>
                 </div>
                 
@@ -37,74 +37,77 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <div class="col-md-2">
-                            <label class="form-label fw-bold">&nbsp;</label>
+                        <div class="col-md-2 d-flex align-items-end">
                             <button type="button" class="btn btn-outline-secondary w-100" id="resetFilters">
                                 Reset
                             </button>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label fw-bold">Filter by Category</label>
-                            <div class="card border">
-                                <div class="card-body p-2">
-                                    <div class="row g-2">
-                                        <div class="col-6">
-                                            <div class="small text-muted fw-bold mb-2">
-                                                <i class="bi bi-asterisk me-1"></i>Risks
+                            <fieldset>
+                                <legend class="form-label fw-bold fs-6">Filter by Category</legend>
+                                <div class="card border">
+                                    <div class="card-body p-2">
+                                        <div class="row g-2">
+                                            <div class="col-6">
+                                                <div class="small text-muted fw-bold mb-2">
+                                                    <i class="bi bi-asterisk me-1" aria-hidden="true"></i>Risks
+                                                </div>
+                                                {% for entry in site.risk_classification %}
+                                                {% assign code = entry[0] %}
+                                                {% assign label = entry[1] %}
+                                                <div class="form-check form-check-sm mb-1">
+                                                    <input class="form-check-input category-checkbox" type="checkbox" value="{{ code }}" id="cat-{{ code }}" data-type="risk">
+                                                    <label class="form-check-label small" for="cat-{{ code }}">
+                                                        <i class="bi {{ site.category_icons[code] }} me-1" aria-hidden="true"></i>{{ label }}
+                                                    </label>
+                                                </div>
+                                                {% endfor %}
                                             </div>
-                                            {% for entry in site.risk_classification %}
-                                            {% assign code = entry[0] %}
-                                            {% assign label = entry[1] %}
-                                            <div class="form-check form-check-sm mb-1">
-                                                <input class="form-check-input category-checkbox" type="checkbox" value="{{ code }}" id="cat-{{ code }}" data-type="risk">
-                                                <label class="form-check-label small" for="cat-{{ code }}">
-                                                    <i class="bi {{ site.category_icons[code] }} me-1"></i>{{ label }}
-                                                </label>
+                                            <div class="col-6">
+                                                <div class="small text-muted fw-bold mb-2">
+                                                    <i class="bi bi-shield-shaded me-1" aria-hidden="true"></i>Mitigations
+                                                </div>
+                                                {% for entry in site.mitigation_classification %}
+                                                {% assign code = entry[0] %}
+                                                {% assign label = entry[1] %}
+                                                <div class="form-check form-check-sm mb-1">
+                                                    <input class="form-check-input category-checkbox" type="checkbox" value="{{ code }}" id="cat-{{ code }}" data-type="mitigation">
+                                                    <label class="form-check-label small" for="cat-{{ code }}">
+                                                        <i class="bi {{ site.category_icons[code] }} me-1" aria-hidden="true"></i>{{ label }}
+                                                    </label>
+                                                </div>
+                                                {% endfor %}
                                             </div>
-                                            {% endfor %}
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="small text-muted fw-bold mb-2">
-                                                <i class="bi bi-shield-shaded me-1"></i>Mitigations
-                                            </div>
-                                            {% for entry in site.mitigation_classification %}
-                                            {% assign code = entry[0] %}
-                                            {% assign label = entry[1] %}
-                                            <div class="form-check form-check-sm mb-1">
-                                                <input class="form-check-input category-checkbox" type="checkbox" value="{{ code }}" id="cat-{{ code }}" data-type="mitigation">
-                                                <label class="form-check-label small" for="cat-{{ code }}">
-                                                    <i class="bi {{ site.category_icons[code] }} me-1"></i>{{ label }}
-                                                </label>
-                                            </div>
-                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </fieldset>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label fw-bold">Filter by Phase</label>
-                            <div class="card border">
-                                <div class="card-body p-2">
-                                    <div class="small text-muted fw-bold mb-2">
-                                        <i class="bi bi-diagram-3-fill me-1"></i>Mitigation Phase
-                                    </div>
-                                    <div class="row g-2">
-                                        {% for entry in site.phase_classification %}
-                                        {% assign code = entry[0] %}
-                                        {% assign label = entry[1] %}
-                                        <div class="col-6 col-lg-4">
-                                            <div class="form-check form-check-sm mb-1">
-                                                <input class="form-check-input phase-checkbox" type="checkbox" value="{{ code }}" id="phase-{{ code }}">
-                                                <label class="form-check-label small" for="phase-{{ code }}">
-                                                    <i class="bi {{ site.category_icons[code] }} me-1"></i>{{ label }}
-                                                </label>
-                                            </div>
+                            <fieldset>
+                                <legend class="form-label fw-bold fs-6">Filter by Phase</legend>
+                                <div class="card border">
+                                    <div class="card-body p-2">
+                                        <div class="small text-muted fw-bold mb-2">
+                                            <i class="bi bi-diagram-3-fill me-1" aria-hidden="true"></i>Mitigation Phase
                                         </div>
-                                        {% endfor %}
+                                        <div class="row g-2">
+                                            {% for entry in site.phase_classification %}
+                                            {% assign code = entry[0] %}
+                                            {% assign label = entry[1] %}
+                                            <div class="col-6 col-lg-4">
+                                                <div class="form-check form-check-sm mb-1">
+                                                    <input class="form-check-input phase-checkbox" type="checkbox" value="{{ code }}" id="phase-{{ code }}">
+                                                    <label class="form-check-label small" for="phase-{{ code }}">
+                                                        <i class="bi {{ site.category_icons[code] }} me-1" aria-hidden="true"></i>{{ label }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </fieldset>
                         </div>
                     </div>
                 </div>
@@ -120,10 +123,10 @@
             <div class="card-header bg-primary text-white">
                 <div class="d-flex justify-content-between align-items-center">
                     <h2 class="h4 mb-0">
-                        <i class="bi bi-asterisk me-2"></i>Risk Catalog
+                        <i class="bi bi-asterisk me-2" aria-hidden="true"></i>Risk Catalog
                     </h2>
-                    <button class="btn btn-outline-light btn-sm expand-btn" type="button" data-catalogue="risk">
-                        <i class="bi bi-chevron-bar-right"></i>
+                    <button class="btn btn-outline-light btn-sm expand-btn" type="button" data-catalogue="risk" aria-pressed="false" aria-label="Expand Risk Catalog to full width">
+                        <i class="bi bi-chevron-bar-right" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -139,7 +142,7 @@
                       <div class="mb-4">
                           <div class="d-flex justify-content-between align-items-center mb-2">
                               <h3 class="h5 mb-0 text-primary">
-                                  {% if category_icon %}<i class="bi {{ category_icon }} me-2"></i>{% endif %}
+                                  {% if category_icon %}<i class="bi {{ category_icon }} me-2" aria-hidden="true"></i>{% endif %}
                                   {{ site.risk_classification[risk_group.name] }}
                               </h3>
                               <span class="badge bg-primary">{{ risk_group.items | size }} risks</span>
@@ -161,7 +164,7 @@
                                                       {% elsif risk_status == 'First-Reading-Approved' %}{% assign status_badge = 'bg-primary' %}
                                                       {% elsif risk_status == 'Draft' %}{% assign status_badge = 'bg-warning text-dark' %}
                                                       {% else %}{% assign status_badge = 'bg-secondary' %}{% endif %}
-                                                      <span class="badge {{ status_badge }}" style="font-size:0.65em;">{{ risk_status }}</span>
+                                                      <span class="badge {{ status_badge }}">{{ risk_status }}</span>
                                                     {% endif %}
                                                   </div>
                                                   <h4 class="h6 mb-1">{{ risk.title }}</h4>
@@ -203,10 +206,10 @@
             <div class="card-header bg-success text-white">
                 <div class="d-flex justify-content-between align-items-center">
                     <h2 class="h4 mb-0">
-                        <i class="bi bi-shield-shaded me-2"></i>Mitigation Catalog
+                        <i class="bi bi-shield-shaded me-2" aria-hidden="true"></i>Mitigation Catalog
                     </h2>
-                    <button class="btn btn-outline-light btn-sm expand-btn" type="button" data-catalogue="mitigation">
-                        <i class="bi bi-chevron-bar-left"></i>
+                    <button class="btn btn-outline-light btn-sm expand-btn" type="button" data-catalogue="mitigation" aria-pressed="false" aria-label="Expand Mitigation Catalog to full width">
+                        <i class="bi bi-chevron-bar-left" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -222,7 +225,7 @@
                       <div class="mb-4">
                           <div class="d-flex justify-content-between align-items-center mb-2">
                               <h3 class="h5 mb-0 text-success">
-                                  {% if category_icon %}<i class="bi {{ category_icon }} me-2"></i>{% endif %}
+                                  {% if category_icon %}<i class="bi {{ category_icon }} me-2" aria-hidden="true"></i>{% endif %}
                                   {{ site.mitigation_classification[mitigation_group.name] }}
                               </h3>
                               <span class="badge bg-success">{{ mitigation_group.items | size }} mitigations</span>
@@ -244,7 +247,7 @@
                                                       {% elsif mitigation_status == 'First-Reading-Approved' %}{% assign status_badge = 'bg-primary' %}
                                                       {% elsif mitigation_status == 'Draft' %}{% assign status_badge = 'bg-warning text-dark' %}
                                                       {% else %}{% assign status_badge = 'bg-secondary' %}{% endif %}
-                                                      <span class="badge {{ status_badge }}" style="font-size:0.65em;">{{ mitigation_status }}</span>
+                                                      <span class="badge {{ status_badge }}">{{ mitigation_status }}</span>
                                                     {% endif %}
                                                   </div>
                                                   <h4 class="h6 mb-1">{{ mitigation.title }}</h4>
@@ -309,12 +312,16 @@ document.addEventListener('DOMContentLoaded', function() {
             // Expand
             filterContent.style.display = 'block';
             filterToggle.classList.remove('collapsed');
-            filterToggle.innerHTML = '<i class="bi bi-chevron-up fs-5"></i>';
+            filterToggle.innerHTML = '<i class="bi bi-chevron-up fs-5" aria-hidden="true"></i>';
+            filterToggle.setAttribute('aria-expanded', 'true');
+            filterToggle.setAttribute('aria-label', 'Hide search and filter options');
         } else {
             // Collapse
             filterContent.style.display = 'none';
             filterToggle.classList.add('collapsed');
-            filterToggle.innerHTML = '<i class="bi bi-chevron-down fs-5"></i>';
+            filterToggle.innerHTML = '<i class="bi bi-chevron-down fs-5" aria-hidden="true"></i>';
+            filterToggle.setAttribute('aria-expanded', 'false');
+            filterToggle.setAttribute('aria-label', 'Show search and filter options');
         }
     });
     
@@ -357,21 +364,24 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateExpandButton(type, isExpanded) {
         const button = document.querySelector(`[data-catalogue="${type}"]`);
         if (button) {
+            const name = type === 'risk' ? 'Risk Catalog' : 'Mitigation Catalog';
+            button.setAttribute('aria-pressed', isExpanded ? 'true' : 'false');
+            button.setAttribute('aria-label', isExpanded ? `Restore ${name} to half width` : `Expand ${name} to full width`);
             if (type === 'risk') {
                 if (isExpanded) {
                     // When risk is expanded, show left arrow to collapse it back
-                    button.innerHTML = `<i class="bi bi-chevron-bar-left"></i>`;
+                    button.innerHTML = `<i class="bi bi-chevron-bar-left" aria-hidden="true"></i>`;
                 } else {
                     // When risk is not expanded, show right arrow to expand it
-                    button.innerHTML = `<i class="bi bi-chevron-bar-right"></i>`;
+                    button.innerHTML = `<i class="bi bi-chevron-bar-right" aria-hidden="true"></i>`;
                 }
             } else { // mitigation
                 if (isExpanded) {
                     // When mitigation is expanded, show right arrow to collapse it back
-                    button.innerHTML = `<i class="bi bi-chevron-bar-right"></i>`;
+                    button.innerHTML = `<i class="bi bi-chevron-bar-right" aria-hidden="true"></i>`;
                 } else {
                     // When mitigation is not expanded, show left arrow to expand it
-                    button.innerHTML = `<i class="bi bi-chevron-bar-left"></i>`;
+                    button.innerHTML = `<i class="bi bi-chevron-bar-left" aria-hidden="true"></i>`;
                 }
             }
         }
@@ -518,7 +528,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Create new badge
         const badge = document.createElement('span');
-        badge.className = `badge ${type === 'risk' ? 'bg-light text-primary' : 'bg-light text-success'} ms-2 count-badge`;
+        badge.className = `badge ${type === 'risk' ? 'bg-white text-primary' : 'bg-white text-success'} ms-2 count-badge`;
         badge.textContent = `${count} ${type}${count !== 1 ? 's' : ''}`;
         header.appendChild(badge);
     }

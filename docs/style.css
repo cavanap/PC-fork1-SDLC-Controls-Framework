@@ -1,7 +1,59 @@
 /* Bootstrap Icons */
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");;
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
 
 /* FINOS AI Governance Framework - Optimized Styles */
+
+/* Accessible colour palette (WCAG 2.1 AA, 4.5:1 for normal text).
+   Bootstrap's default link blue (#0d6efd) and success green (#198754) fall
+   just short of 4.5:1 on the light-grey backgrounds used across the site, so
+   text uses the darker shades below. Decorative borders and fills keep the
+   Bootstrap defaults. */
+:root {
+    --a11y-primary-text: #0a58ca;
+    --a11y-success-text: #146c43;
+    --a11y-muted-text: #565e64;
+    --bs-link-color: #0a58ca;
+    --bs-link-color-rgb: 10, 88, 202;
+    --bs-link-hover-color: #084298;
+    --bs-link-hover-color-rgb: 8, 66, 152;
+    --bs-code-color: #ab296a;
+}
+
+.text-primary {
+    color: var(--a11y-primary-text) !important;
+}
+
+.text-success {
+    color: var(--a11y-success-text) !important;
+}
+
+/* Outline buttons sit on light backgrounds; darken their text and borders to
+   match. Hover/active states fill with the same shade behind white text. */
+.btn-outline-primary {
+    --bs-btn-color: #0a58ca;
+    --bs-btn-border-color: #0a58ca;
+    --bs-btn-hover-bg: #0a58ca;
+    --bs-btn-hover-border-color: #0a58ca;
+    --bs-btn-active-bg: #0a58ca;
+    --bs-btn-active-border-color: #0a58ca;
+}
+
+.btn-outline-success {
+    --bs-btn-color: #146c43;
+    --bs-btn-border-color: #146c43;
+    --bs-btn-hover-bg: #146c43;
+    --bs-btn-hover-border-color: #146c43;
+    --bs-btn-active-bg: #146c43;
+    --bs-btn-active-border-color: #146c43;
+}
+
+/* Keep long snippets wrapped so code blocks never become a scroll region
+   that keyboard users cannot reach (WCAG 2.1.1). */
+.highlight pre,
+pre.highlight {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
 
 /* External link icon styling */
 .external-link-icon {
@@ -14,7 +66,7 @@
 .risk-id {
     font-family: monospace;
     font-size: 0.8rem;
-    color: #0d6efd;
+    color: var(--a11y-primary-text);
     letter-spacing: 0.5px;
     font-weight: 600;
 }
@@ -22,7 +74,7 @@
 .mitigation-id {
     font-family: monospace;
     font-size: 0.8rem;
-    color: #198754;
+    color: var(--a11y-success-text);
     letter-spacing: 0.5px;
     font-weight: 600;
 }
@@ -58,7 +110,7 @@
 .nav-tabs .nav-link {
     border: none;
     border-radius: 0;
-    color: #6c757d;
+    color: var(--a11y-muted-text);
     font-weight: 500;
     padding: 1rem 1.5rem;
     transition: all 0.2s ease-in-out;
@@ -74,7 +126,7 @@
     border: none;
     border-bottom: 3px solid #0d6efd;
     background-color: transparent;
-    color: #0d6efd;
+    color: var(--a11y-primary-text);
     font-weight: 600;
 }
 
@@ -200,12 +252,12 @@ optgroup option {
 
 /* Category headers */
 .h5.text-primary {
-    color: #0d6efd !important;
+    color: var(--a11y-primary-text) !important;
     font-weight: 600;
 }
 
 .h5.text-success {
-    color: #198754 !important;
+    color: var(--a11y-success-text) !important;
     font-weight: 600;
 }
 
@@ -303,8 +355,8 @@ a:focus {
 }
 
 .control-chain-step.active {
-    border-color: #198754;
-    background: #198754;
+    border-color: #146c43;
+    background: #146c43;
     color: #fff;
 }
 
@@ -313,7 +365,7 @@ a:focus {
 }
 
 .control-chain-step.active .chain-name {
-    color: rgba(255, 255, 255, 0.9);
+    color: #fff;
 }
 
 .chain-title {
@@ -323,7 +375,7 @@ a:focus {
 
 .chain-name {
     font-size: 0.75rem;
-    color: #6c757d;
+    color: var(--a11y-muted-text);
     margin-top: 0.15rem;
     white-space: nowrap;
     overflow: hidden;
