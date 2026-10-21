@@ -152,7 +152,7 @@
                               {% for risk in sorted_risks %}
                               {% assign risk_status = risk['doc-status'] | default: '' %}
                               <div class="col-12 risk-item" data-id="ri-{{ risk.sequence }}" data-title="{{ risk.title | downcase }}" data-content="{{ risk.content | strip_html | strip_newlines | downcase }}" data-status="{{ risk_status }}">
-                                  <div class="card border-start border-primary border-3 h-100 card-hover" onclick="window.location.href='{{ site.baseurl }}{{ risk.id }}.html'" style="cursor: pointer;">
+                                  <div class="card border-start border-primary border-3 h-100 card-hover">
                                       <div class="card-body py-2">
                                           <div class="d-flex justify-content-between align-items-start">
                                               <div class="flex-grow-1">
@@ -183,7 +183,7 @@
                                                   <p class="small text-muted mb-0 description-text">{{ clean_summary }}</p>
                                               </div>
                                               <div class="ms-2">
-                                                  <a href="{{ site.baseurl }}{{ risk.id }}.html" class="btn btn-outline-primary btn-sm" onclick="event.stopPropagation();">
+                                                  <a href="{{ site.baseurl }}{{ risk.id }}.html" class="btn btn-outline-primary btn-sm stretched-link" aria-label="View {{ risk.title | escape }}">
                                                       View
                                                   </a>
                                               </div>
@@ -235,7 +235,7 @@
                               {% for mitigation in sorted_mitigations %}
                               {% assign mitigation_status = mitigation['doc-status'] | default: '' %}
                               <div class="col-12 mitigation-item" data-phase="{{ mitigation.phase }}" data-mitigates="{{ mitigation.mitigates | join: ' ' }}" data-title="{{ mitigation.title | downcase }}" data-content="{{ mitigation.content | strip_html | strip_newlines | downcase }}" data-status="{{ mitigation_status }}">
-                                  <div class="card border-start border-success border-3 h-100 card-hover" onclick="window.location.href='{{ site.baseurl }}{{ mitigation.id }}.html'" style="cursor: pointer;">
+                                  <div class="card border-start border-success border-3 h-100 card-hover">
                                       <div class="card-body py-2">
                                           <div class="d-flex justify-content-between align-items-start">
                                               <div class="flex-grow-1">
@@ -271,7 +271,7 @@
                                                   <p class="small text-muted mb-0 description-text">{{ clean_summary }}</p>
                                               </div>
                                               <div class="ms-2">
-                                                  <a href="{{ site.baseurl }}{{ mitigation.id }}.html" class="btn btn-outline-success btn-sm" onclick="event.stopPropagation();">
+                                                  <a href="{{ site.baseurl }}{{ mitigation.id }}.html" class="btn btn-outline-success btn-sm stretched-link" aria-label="View {{ mitigation.title | escape }}">
                                                       View
                                                   </a>
                                               </div>
